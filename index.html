@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yayasan Sarana Berbagi | Masjid Sejuta Pemuda Style</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <title>Yayasan Sarana Berbagi | Center Layout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #10B981; /* Hijau Emerald ala Yayasan */
-            --bg-gray: #F9FAFB;
+            --primary: #10B981;
+            --bg-site: #ECEFF1; /* Warna latar belakang luar layout */
             --white: #FFFFFF;
-            --text-dark: #111827;
-            --text-muted: #6B7280;
+            --text-main: #111827;
             --border: #E5E7EB;
         }
 
@@ -19,12 +18,22 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-gray);
-            color: var(--text-dark);
-            padding-bottom: 80px;
+            background-color: var(--bg-site); /* Latar belakang luar */
+            display: flex;
+            justify-content: center;
         }
 
-        /* 1. Sticky Header ala Masjid Sejuta Pemuda */
+        /* Wrapper Utama - Kunci untuk tampilan di tengah */
+        .main-wrapper {
+            width: 100%;
+            max-width: 480px; /* Lebar maksimal ala aplikasi mobile */
+            background-color: #F9FAFB; /* Warna latar dalam web */
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* Header */
         header {
             background: var(--white);
             padding: 15px 20px;
@@ -40,39 +49,21 @@
         .logo {
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            font-size: 1rem;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 1rem;
         }
 
-        /* 2. Hero Banner */
-        .hero {
-            background: var(--white);
-            padding: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-        .hero-img {
-            width: 100%;
-            height: 180px;
-            border-radius: 16px;
-            background: #EEE;
-            object-fit: cover;
-        }
-
-        /* 3. Filter Kategori ala Masjid Sejuta Pemuda */
-        .filter-nav {
+        /* Filter Tabs */
+        .filter-tabs {
             display: flex;
             overflow-x: auto;
-            padding: 15px 20px;
+            padding: 15px;
             gap: 10px;
-            background: var(--bg-gray);
             scrollbar-width: none;
         }
-        .filter-nav::-webkit-scrollbar { display: none; }
+        .filter-tabs::-webkit-scrollbar { display: none; }
         
-        .filter-btn {
+        .tab {
             background: var(--white);
             border: 1px solid var(--border);
             padding: 8px 16px;
@@ -80,133 +71,91 @@
             font-size: 0.8rem;
             font-weight: 600;
             white-space: nowrap;
-            color: var(--text-muted);
         }
-        .filter-btn.active {
+        .tab.active {
             background: var(--primary);
             color: var(--white);
             border-color: var(--primary);
         }
 
-        /* 4. Program Grid & Cards */
-        .container { padding: 0 20px; }
+        /* Content Card */
+        .container { padding: 0 15px; }
 
-        .program-card {
+        .card {
             background: var(--white);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            margin-bottom: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
         }
 
-        .card-img-wrapper { position: relative; }
-        .card-img { width: 100%; height: 210px; object-fit: cover; }
-        
-        .badge-type {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
+        .card-img { width: 100%; height: 200px; object-fit: cover; background: #eee; }
 
-        .card-content { padding: 20px; }
-        .card-title { font-size: 1rem; font-weight: 700; line-height: 1.5; margin-bottom: 15px; }
+        .card-content { padding: 15px; }
+        .card-title { font-size: 0.95rem; font-weight: 700; line-height: 1.4; margin-bottom: 12px; }
 
-        /* Progress Section */
-        .progress-box { margin-bottom: 15px; }
-        .progress-bar-bg { background: #E5E7EB; height: 6px; border-radius: 10px; margin-bottom: 8px; }
-        .progress-bar-fill { background: var(--primary); height: 100%; width: 60%; border-radius: 10px; }
-        
-        .card-stats {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-        }
-        .stat-val { font-weight: 700; color: var(--text-dark); }
-        .stat-label { color: var(--text-muted); }
+        .progress-container { margin-bottom: 10px; }
+        .progress-bar { background: #E5E7EB; height: 6px; border-radius: 10px; }
+        .progress-fill { background: var(--primary); height: 100%; width: 50%; border-radius: 10px; }
 
-        /* Bottom Nav ala Mobile App */
+        .stats { display: flex; justify-content: space-between; font-size: 0.75rem; }
+        .stat-bold { font-weight: 700; color: var(--text-main); }
+
+        /* Bottom Nav - Diatur agar tetap di dalam wrapper tengah */
         .bottom-nav {
             position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
+            width: 100%;
+            max-width: 480px; /* Harus sama dengan lebar wrapper */
             background: var(--white);
             display: flex;
             justify-content: space-around;
             padding: 12px 0;
             border-top: 1px solid var(--border);
-            z-index: 1000;
         }
-        .nav-item { text-decoration: none; color: var(--text-muted); text-align: center; font-size: 0.7rem; font-weight: 600; }
-        .nav-item.active { color: var(--primary); }
-        .nav-icon { font-size: 1.2rem; display: block; margin-bottom: 3px; }
 
+        .nav-item { text-decoration: none; color: #9CA3AF; text-align: center; font-size: 0.7rem; }
+        .nav-item.active { color: var(--primary); }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">
-            <span>🌿</span> SARANA BERBAGI
+    <div class="main-wrapper">
+        <header>
+            <div class="logo">SARANA BERBAGI</div>
+            <div>🔍</div>
+        </header>
+
+        <div class="filter-tabs">
+            <div class="tab active">Semua</div>
+            <div class="tab">Wakaf</div>
+            <div class="tab">Pendidikan</div>
+            <div class="tab">Kesehatan</div>
         </div>
-        <div style="color: var(--text-muted);">🔍</div>
-    </header>
 
-    <div class="hero">
-        <img src="https://via.placeholder.com/800x400/10B981/FFFFFF?text=Sedekah+Jariyah+Terbaik" class="hero-img">
-    </div>
-
-    <div class="filter-nav">
-        <div class="filter-btn active">Semua</div>
-        <div class="filter-btn">Wakaf</div>
-        <div class="filter-btn">Pendidikan</div>
-        <div class="filter-btn">Kemanusiaan</div>
-        <div class="filter-btn">Kesehatan</div>
-    </div>
-
-    <div class="container">
-        <div class="program-card">
-            <div class="card-img-wrapper">
-                <span class="badge-type">MASJID</span>
-                <img src="https://via.placeholder.com/600x400/F3F4F6/666666?text=Pembangunan+Masjid" class="card-img">
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">Bangun Rumah di Surga: Wakaf Pembangunan Masjid Peradaban</h3>
-                
-                <div class="progress-box">
-                    <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
-                    <div class="card-stats">
-                        <div>
-                            <span class="stat-label">Terkumpul</span><br>
-                            <span class="stat-val">Rp 306.767.487</span>
-                        </div>
-                        <div style="text-align: right;">
-                            <span class="stat-label">Donatur</span><br>
-                            <span class="stat-val">3.2K+</span>
-                        </div>
+        <div class="container">
+            <div class="card" style="margin-top: 10px;">
+                <img src="https://via.placeholder.com/500x300/10B981/FFFFFF?text=Program+Pilihan" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Sedekah Jariyah: Bantu Pembangunan Fasilitas Air Bersih</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar"><div class="progress-fill"></div></div>
+                    </div>
+                    <div class="stats">
+                        <div>Terkumpul<br><span class="stat-bold">Rp 25.000.000</span></div>
+                        <div style="text-align: right;">Donatur<br><span class="stat-bold">120+</span></div>
                     </div>
                 </div>
-
-                <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 10px;">
-                    📅 <strong>9 bulan lagi</strong>
-                </div>
             </div>
         </div>
-    </div>
 
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item active"><span class="nav-icon">🏠</span>Home</a>
-        <a href="#" class="nav-item"><span class="nav-icon">🤝</span>Donasi</a>
-        <a href="#" class="nav-item"><span class="nav-icon">📰</span>Berita</a>
-        <a href="#" class="nav-item"><span class="nav-icon">👤</span>Profil</a>
-    </nav>
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">🏠<br>Home</a>
+            <a href="#" class="nav-item">🤝<br>Donasi</a>
+            <a href="#" class="nav-item">📰<br>Berita</a>
+            <a href="#" class="nav-item">👤<br>Profil</a>
+        </nav>
+    </div>
 
 </body>
 </html>
