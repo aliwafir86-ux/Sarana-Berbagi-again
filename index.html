@@ -3,154 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ice Kulcool | Katalog & Donasi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <title>Yayasan Sarana Berbagi | Menabung Amal Jariyah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #FDFDFD;
-            --bg-gray: #F3F4F6;
+            --primary: #10B981; /* Hijau Segar khas Yayasan/Sosial */
+            --bg-light: #F9FAFB;
             --white: #FFFFFF;
-            --primary: #4E342E; /* Warna Cokelat Ice Kulcool */
             --text-dark: #111827;
             --text-muted: #6B7280;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --border: #E5E7EB;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
+            background-color: var(--bg-light);
             color: var(--text-dark);
             padding-bottom: 80px;
         }
 
-        /* Header Minimalis ala Yayasan Sarana Berbagi */
+        /* Header Minimalis */
         header {
             background: var(--white);
-            padding: 18px 20px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #F1F1F1;
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
+        .logo { font-weight: 800; font-size: 1.1rem; color: var(--primary); letter-spacing: -0.5px; }
 
-        /* Kategori ala Masjid Sejuta Pemuda */
-        .category-tabs {
+        /* Struktur Navigasi Kategori (ala Masjid Sejuta Pemuda) */
+        .tabs-container {
             display: flex;
             overflow-x: auto;
             padding: 15px 20px;
             gap: 10px;
             scrollbar-width: none;
         }
-        .category-tabs::-webkit-scrollbar { display: none; }
+        .tabs-container::-webkit-scrollbar { display: none; }
 
-        .tab-item {
+        .tab-btn {
             background: var(--white);
-            border: 1px solid #E5E7EB;
-            padding: 10px 18px;
-            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 10px;
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--text-muted);
             white-space: nowrap;
-            transition: 0.2s;
         }
-        .tab-item.active {
+        .tab-btn.active {
             background: var(--primary);
             color: var(--white);
             border-color: var(--primary);
         }
 
-        /* Container & Card Design */
+        /* Grid Program Donasi */
         .container { padding: 0 20px; }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px 0 20px;
-        }
-        .section-header h2 { font-size: 1.1rem; font-weight: 700; }
-
-        .card {
+        .program-card {
             background: var(--white);
-            border-radius: 20px;
-            border: 1px solid #F3F4F6;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 25px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
             overflow: hidden;
         }
 
-        .card-banner {
-            width: 100%;
-            height: 220px;
-            background: #F3F4F6;
-            object-fit: cover;
-        }
+        .program-img { width: 100%; height: 200px; background: #EEE; object-fit: cover; }
 
-        .card-body { padding: 20px; }
+        .card-content { padding: 20px; }
 
-        .badge-status {
-            background: #E8F5E9;
-            color: #2E7D32;
-            font-size: 11px;
+        .label-category {
+            font-size: 10px;
             font-weight: 700;
-            padding: 4px 10px;
+            color: var(--primary);
+            background: #ECFDF5;
+            padding: 4px 8px;
             border-radius: 6px;
             display: inline-block;
-            margin-bottom: 12px;
-        }
-
-        .card-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        /* Progress Bar ala Masjid & Yayasan */
-        .donation-status { margin: 15px 0; }
-        .progress-bar-bg {
-            background: #F3F4F6;
-            height: 8px;
-            border-radius: 10px;
             margin-bottom: 10px;
         }
-        .progress-fill {
-            background: var(--primary);
-            height: 100%;
-            width: 65%; /* Sesuai progres */
-            border-radius: 10px;
-        }
 
-        .stats-grid {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-        }
-        .stat-label { color: var(--text-muted); display: block; }
-        .stat-value { font-weight: 700; color: var(--text-dark); }
+        .program-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; line-height: 1.5; }
 
-        /* Button ala Yayasan Sarana Berbagi */
-        .btn-action {
+        /* Progress Bar Donasi */
+        .progress-section { margin-bottom: 15px; }
+        .progress-bg { background: #F3F4F6; height: 8px; border-radius: 10px; margin-bottom: 8px; }
+        .progress-bar { background: var(--primary); height: 100%; width: 45%; border-radius: 10px; }
+
+        .stats { display: flex; justify-content: space-between; font-size: 0.8rem; }
+        .stat-item span { display: block; }
+        .stat-label { color: var(--text-muted); margin-bottom: 2px; }
+        .stat-val { font-weight: 700; }
+
+        .btn-donasi {
             display: block;
             background: var(--primary);
             color: var(--white);
@@ -161,96 +115,82 @@
             font-weight: 700;
             font-size: 0.9rem;
             margin-top: 15px;
-            transition: 0.3s;
         }
 
-        /* Bottom Navigation */
+        /* Bottom Nav */
         .bottom-nav {
             position: fixed;
             bottom: 0;
-            left: 0;
-            right: 0;
+            width: 100%;
             background: var(--white);
             display: flex;
             justify-content: space-around;
-            padding: 15px 0;
-            border-top: 1px solid #F1F1F1;
-            z-index: 1000;
+            padding: 12px 0;
+            border-top: 1px solid var(--border);
         }
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-muted);
-            text-align: center;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-        .nav-link.active { color: var(--primary); }
-        .nav-icon { font-size: 1.3rem; display: block; margin-bottom: 3px; }
+        .nav-item { text-decoration: none; color: var(--text-muted); text-align: center; font-size: 0.7rem; font-weight: 600; }
+        .nav-item.active { color: var(--primary); }
+        .nav-icon { font-size: 1.3rem; display: block; margin-bottom: 2px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-text">ICE KULCOOL</div>
-        <div style="font-size: 1.2rem;">🔍</div>
-    </header>
+<header>
+    <div class="logo">SARANA BERBAGI</div>
+    <div>🔍</div>
+</header>
 
-    <div class="category-tabs">
-        <div class="tab-item active">Semua</div>
-        <div class="tab-item">Best Seller</div>
-        <div class="tab-item">Menu Buah</div>
-        <div class="tab-item">Promo</div>
-    </div>
+<div class="tabs-container">
+    <div class="tab-btn active">Semua</div>
+    <div class="tab-btn">Pendidikan</div>
+    <div class="tab-btn">Kesehatan</div>
+    <div class="tab-btn">Yatim & Dhuafa</div>
+    <div class="tab-btn">Bencana</div>
+</div>
 
-    <div class="container">
-        <div class="section-header">
-            <h2>Katalog Pilihan ✨</h2>
-        </div>
-
-        <div class="card">
-            <img src="https://via.placeholder.com/600x400/F3F4F6/4E342E?text=Piscok+Lumer+Premium" class="card-banner">
-            <div class="card-body">
-                <span class="badge-status">READY STOCK</span>
-                <h3 class="card-title">Piscok Frozen Lumer - Original Belgian Chocolate</h3>
-                
-                <div class="donation-status">
-                    <div class="progress-bar-bg">
-                        <div class="progress-fill"></div>
+<div class="container">
+    <div class="program-card">
+        <img src="https://via.placeholder.com/600x400/E5E7EB/10B981?text=Peduli+Yatim" class="program-img">
+        <div class="card-content">
+            <span class="label-category">YATIM & DHUAFA</span>
+            <h2 class="program-title">Sedekah Jariyah: Bangun Asrama Layak untuk Santri Yatim</h2>
+            
+            <div class="progress-section">
+                <div class="progress-bg"><div class="progress-bar"></div></div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Terkumpul</span>
+                        <span class="stat-val">Rp 45.250.000</span>
                     </div>
-                    <div class="stats-grid">
-                        <div>
-                            <span class="stat-label">Terjual</span>
-                            <span class="stat-value">132 Pack</span>
-                        </div>
-                        <div style="text-align: right;">
-                            <span class="stat-label">Target</span>
-                            <span class="stat-value">200 Pack</span>
-                        </div>
+                    <div class="stat-item" style="text-align: right;">
+                        <span class="stat-label">Target</span>
+                        <span class="stat-val">Rp 100.000.000</span>
                     </div>
                 </div>
-
-                <div class="stats-grid" style="border-top: 1px dotted #EEE; padding-top: 15px;">
-                    <div>
-                        <span class="stat-label">Harga</span>
-                        <span class="stat-value" style="font-size: 1rem; color: var(--primary);">Rp 5.000</span>
-                    </div>
-                    <div style="text-align: right;">
-                        <span class="stat-label">Sisa Hari</span>
-                        <span class="stat-value">4 Hari lagi</span>
-                    </div>
-                </div>
-
-                <a href="#" class="btn-action">Pesan Sekarang</a>
             </div>
+
+            <div class="stats" style="border-top: 1px dotted #EEE; padding-top: 12px;">
+                <div class="stat-item">
+                    <span class="stat-label">Donatur</span>
+                    <span class="stat-val">245 Orang</span>
+                </div>
+                <div class="stat-item" style="text-align: right;">
+                    <span class="stat-label">Sisa Hari</span>
+                    <span class="stat-val">12 Hari lagi</span>
+                </div>
+            </div>
+
+            <a href="#" class="btn-donasi">Donasi Sekarang</a>
         </div>
     </div>
+</div>
 
-    <nav class="bottom-nav">
-        <a href="#" class="nav-link active"><span class="nav-icon">🏠</span>Beranda</a>
-        <a href="#" class="nav-link"><span class="nav-icon">🛍️</span>Katalog</a>
-        <a href="#" class="nav-link"><span class="nav-icon">📸</span>Instagram</a>
-        <a href="#" class="nav-link"><span class="nav-icon">👤</span>Profil</a>
-    </nav>
+<nav class="bottom-nav">
+    <a href="#" class="nav-item active"><span class="nav-icon">🏠</span>Home</a>
+    <a href="#" class="nav-item"><span class="nav-icon">🤝</span>Donasi</a>
+    <a href="#" class="nav-item"><span class="nav-icon">📜</span>Berita</a>
+    <a href="#" class="nav-item"><span class="nav-icon">👤</span>Akun</a>
+</nav>
 
 </body>
 </html>
